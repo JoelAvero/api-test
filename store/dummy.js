@@ -16,11 +16,23 @@ const db = {
       username: "jimdoe",
     },
   ],
+  auth: [
+    {
+      username: "johndoe",
+      password: "123456",
+    },
+    {
+      username: "janedoe",
+      password: "123456",
+    },
+    {
+      username: "jimdoe",
+      password: "123456",
+    },
+  ],
 };
 
 async function list(table) {
-  console.log(db);
-
   return db[table];
 }
 
@@ -45,9 +57,22 @@ async function remove(table, id) {
   return filteredData;
 }
 
+async function query(table, query) {
+  const data = await list(table);
+  return data.filter((item) => {
+    for (const key in query) {
+      if (item[key] !== query[key]) {
+        return false;
+      }
+    }
+    return true;
+  });
+}
+
 module.exports = {
   list,
   getById,
   upsert,
   remove,
+  query,
 };

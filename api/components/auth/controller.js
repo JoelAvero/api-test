@@ -1,9 +1,21 @@
+const auth = require("../../../auth");
 const TABLE = "auth";
-
 module.exports = function (injectedStore) {
   let store = injectedStore;
   if (!store) {
     store = require("../../../store/dummy");
+  }
+
+  async function login(username, password) {
+    const [data] = await store.query(TABLE, {
+      username: username,
+    });
+
+    if (data && data.password === password) {
+      return auth.sign(data);
+    } else {
+      return null;
+    }
   }
   async function upsert(data) {
     try {
@@ -25,5 +37,6 @@ module.exports = function (injectedStore) {
 
   return {
     upsert,
+    login,
   };
 };
