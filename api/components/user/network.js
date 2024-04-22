@@ -15,7 +15,7 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    console.log(id);
+
     const data = await Controller.getById(id);
     response.success(req, res, data, 200);
   } catch (error) {

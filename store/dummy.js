@@ -2,31 +2,38 @@ const db = {
   user: [
     {
       id: "1",
-      name: "John",
+      firstName: "John",
+      username: "johndoe",
     },
     {
       id: "2",
-      name: "Jane",
+      firstName: "Jane",
+      username: "janedoe",
     },
     {
       id: "3",
-      name: "Jim",
+      firstName: "Jim",
+      username: "jimdoe",
     },
   ],
 };
 
 async function list(table) {
+  console.log(db);
+
   return db[table];
 }
 
 async function getById(table, id) {
   let data = await list(table);
-  console.log("id =Z", id);
+
   return data.filter((item) => item.id === id)[0] || null;
 }
 
 async function upsert(table, data) {
-  console.log(data);
+  if (!db[table]) {
+    db[table] = [];
+  }
   db[table].push(data);
   return data;
 }
