@@ -11,42 +11,42 @@ router.post("/", upsert);
 router.put("/", secure("update"), upsert);
 router.delete("/:id", remove);
 
-async function getAll(req, res) {
+async function getAll(req, res, next) {
   try {
-    const data = await Controller.list();
+    const data = await Controller.lisst();
     response.success(req, res, data, 200);
   } catch (error) {
-    response.error(req, res, error, 500);
+    next(error);
   }
 }
 
-async function getById(req, res) {
+async function getById(req, res, next) {
   try {
     const id = req.params.id;
 
     const data = await Controller.getById(id);
     response.success(req, res, data, 200);
   } catch (error) {
-    response.error(req, res, error, 500);
+    next(error);
   }
 }
 
-async function upsert(req, res) {
+async function upsert(req, res, next) {
   try {
     const data = await Controller.upsert(req.body);
     response.success(req, res, data, 200);
   } catch (error) {
-    response.error(req, res, error, 500);
+    next(error);
   }
 }
 
-async function remove(req, res) {
+async function remove(req, res, next) {
   try {
     const id = req.params.id;
     const data = await Controller.remove(id);
     response.success(req, res, data, 200);
   } catch (error) {
-    response.error(req, res, error, 500);
+    next(error);
   }
 }
 

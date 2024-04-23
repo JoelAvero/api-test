@@ -3,7 +3,7 @@ const response = require("../../../network/response");
 const Controller = require("./index");
 const router = express.Router();
 
-router.post("/login", async (req, res) => {
+router.post("/login", async (req, res, next) => {
   try {
     const token = await Controller.login(req.body.username, req.body.password);
 
@@ -13,7 +13,7 @@ router.post("/login", async (req, res) => {
 
     response.success(req, res, token, 200);
   } catch (error) {
-    response.error(req, res, error, 500);
+    next(error);
   }
 });
 
