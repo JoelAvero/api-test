@@ -19,15 +19,15 @@ const db = {
   auth: [
     {
       username: "johndoe",
-      password: "123456",
+      password: "$2b$05$q68u6FPPVn0PvfKmWxhDrO/5e4LtApzdAM2C7e/TIds3A1/ajLeA2",
     },
     {
       username: "janedoe",
-      password: "123456",
+      password: "$2b$05$q68u6FPPVn0PvfKmWxhDrO/5e4LtApzdAM2C7e/TIds3A1/ajLeA2",
     },
     {
       username: "jimdoe",
-      password: "123456",
+      password: "$2b$05$q68u6FPPVn0PvfKmWxhDrO/5e4LtApzdAM2C7e/TIds3A1/ajLeA2",
     },
   ],
 };
